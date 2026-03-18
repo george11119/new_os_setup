@@ -10,6 +10,8 @@ sudo apt-get install openssh-server
 cat .vimrc >> "${HOME}/.vimrc"
 cat .inputrc >> "${HOME}/.inputrc"
 cat .bashrc >> "${HOME}/.bashrc"
+cat .gitconfig >> "${HOME}/.gitconfig"
+cat .gitignore >> "${HOME}/.gitignore"
 
 # other
 sudo apt install neofetch
