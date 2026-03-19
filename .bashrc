@@ -157,3 +157,14 @@ run_detached() {
 kill_process() {
     ps aux | grep $1 | grep -v grep | awk "{print \$2}" | xargs -n1 kill -9
 }
+
+cdf() {
+  local dir
+  # dir=$(find ${1:-.} -path '*/\.*' -prune \
+  #                 -o -type d -print 2> /dev/null | fzf +m) &&
+  dir=$(find ${1:-.} \
+    \( -path '*/\.*' -o -name 'node_modules' -o -name "go" \) \
+    -prune -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
