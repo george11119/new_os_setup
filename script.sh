@@ -39,6 +39,12 @@ curl -Lo "${HOME}/Downloads/fd_10.4.2_amd64.deb" https://github.com/sharkdp/fd/r
 sudo dpkg -i "${HOME}/Downloads/fd_10.4.2_amd64.deb"
 rm "${HOME}/Downloads/fd_10.4.2_amd64.deb"
 
+# tmux
+sudo apt install tmux -y
+cat "${SCRIPT_DIR}/.tmux.conf" >> "${HOME}/.tmux.conf"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
+
 # bind caps lock to escape
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
 
