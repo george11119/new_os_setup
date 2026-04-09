@@ -33,3 +33,9 @@ rm "${HOME}/Downloads/ripgrep_14.1.1-1_amd64.deb"
 curl -Lo "${HOME}/Downloads/fd_10.4.2_amd64.deb" https://github.com/sharkdp/fd/releases/download/v10.4.2/fd_10.4.2_amd64.deb
 sudo dpkg -i "${HOME}/Downloads/fd_10.4.2_amd64.deb"
 rm "${HOME}/Downloads/fd_10.4.2_amd64.deb"
+
+# bind caps lock to escape
+gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+
+# install claude code
+curl -fsSL https://claude.ai/install.sh | bash
