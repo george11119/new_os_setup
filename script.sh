@@ -18,14 +18,19 @@ cat "${SCRIPT_DIR}/.gitconfig" >> "${HOME}/.gitconfig"
 cat "${SCRIPT_DIR}/.gitignore" >> "${HOME}/.gitignore"
 
 # other
-sudo apt install fastfetch -y
+if apt-cache show fastfetch &>/dev/null; then
+    sudo apt install fastfetch -y
+else
+    sudo apt install neofetch -y
+fi
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install --all
 
 # ripgrep
-curl -LO --output-dir "${HOME}/Downloads" https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_14.1.1-1_amd64.deb
+mkdir -p "${HOME}/Downloads"
+curl -Lo "${HOME}/Downloads/ripgrep_14.1.1-1_amd64.deb" https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_14.1.1-1_amd64.deb
 sudo dpkg -i "${HOME}/Downloads/ripgrep_14.1.1-1_amd64.deb"
 rm "${HOME}/Downloads/ripgrep_14.1.1-1_amd64.deb"
 
