@@ -1,30 +1,35 @@
-sudo apt update --y && sudo apt upgrade --y
+#!/bin/bash
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+sudo apt update && sudo apt upgrade -y
 
 # required for pc to be functional
-sudo apt install curl git vim
+sudo apt install curl git vim -y
 
 # to allow SSH
-sudo apt-get install openssh-server
+sudo apt-get install openssh-server -y
 
 # terminal config files
-cat .vimrc >> "${HOME}/.vimrc"
-cat .inputrc >> "${HOME}/.inputrc"
-cat .bashrc >> "${HOME}/.bashrc"
-cat .gitconfig >> "${HOME}/.gitconfig"
-cat .gitignore >> "${HOME}/.gitignore"
+cat "${SCRIPT_DIR}/.vimrc" >> "${HOME}/.vimrc"
+cat "${SCRIPT_DIR}/.inputrc" >> "${HOME}/.inputrc"
+cat "${SCRIPT_DIR}/.bashrc" >> "${HOME}/.bashrc"
+cat "${SCRIPT_DIR}/.gitconfig" >> "${HOME}/.gitconfig"
+cat "${SCRIPT_DIR}/.gitignore" >> "${HOME}/.gitignore"
 
 # other
-sudo apt install neofetch
+sudo apt install fastfetch -y
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --all
 
 # ripgrep
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_14.1.1-1_amd64.deb
-sudo dpkg -i ripgrep_14.1.1-1_amd64.deb
-sudo apt-get install ripgrep
+curl -LO --output-dir "${HOME}/Downloads" https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep_14.1.1-1_amd64.deb
+sudo dpkg -i "${HOME}/Downloads/ripgrep_14.1.1-1_amd64.deb"
+rm "${HOME}/Downloads/ripgrep_14.1.1-1_amd64.deb"
 
 # fd
-wget --directory-prefix="${HOME}/Downloads" https://github.com/sharkdp/fd/releases/download/v10.4.2/fd_10.4.2_amd64.deb
+curl -Lo "${HOME}/Downloads/fd_10.4.2_amd64.deb" https://github.com/sharkdp/fd/releases/download/v10.4.2/fd_10.4.2_amd64.deb
 sudo dpkg -i "${HOME}/Downloads/fd_10.4.2_amd64.deb"
+rm "${HOME}/Downloads/fd_10.4.2_amd64.deb"
